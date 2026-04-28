@@ -1,0 +1,305 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #0f0f0f;
+  color: #ffff;
+  font-family: 'Inter', sans-serif;
+}
+
+h1{
+  font-family: 'Playfair Display', serif;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hearder-Home{
+  background-color: rgba(15, 15, 15, 0.95);
+  border-bottom: 1px solid #333333;
+}
+
+.navegacao{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo h1{
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.links-navegacao{
+  display: flex;
+  gap: 32px;
+  font-size: 15px;
+}
+
+.btn-login{
+  background-color: #d97706;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.principal{
+  text-align: center;
+  padding: 130px 32px;
+  background-color: #1a1a1a;
+  background-image: linear-gradient(to bottom, rgba(15, 15, 15, 0.4), #0f0f0f), url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop');
+  background-position: center;
+  background-size: cover;
+}
+
+.periodos{
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.cabecalho-periodos{
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.cabecalho-periodos h2{
+  font-size: 40px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.cabecalho-periodos p{
+  color: #a0a0a0;
+  font-size: 16px;
+}
+
+.conceito-mscClassica{
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 8px;
+  border-left: 4px solid #d97706;
+  margin-bottom: 60px;
+}
+
+.conceito-mscClassica h3{
+  color: #d97706;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+
+.conceito-mscClassica p{
+  color: #a0a0a0;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.espaco-periodos{
+  display: grid;
+  grid-template-columns: auto;
+  gap: 24px;
+}
+
+.card{
+  background-color: #1a1a1a;
+  padding: 32px;
+  border-radius: 8px;
+  border-top: 4px solid transparent;
+}
+
+.barroco{
+  border-top-color: #a855f7;
+}
+.classico{
+  border-top-color: #3b82f6;
+}
+.romantico{
+  border-top-color: #f93016;
+}
+.impressionista{
+  border-top-color: #22c55e;
+}
+
+
+
+.card h3{
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.data{
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.descricao{
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-bottom: 24px;
+  min-height: 65px;
+}
+
+.compositores h4{
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #ffff;
+}
+
+.caracteristicas h4{
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #ffff;
+}
+
+.tag{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tag span{
+  background-color: #242424;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.item{
+  font-size: 14px;
+  color: #a0a0a0;
+  margin: 0 0 8px 0;
+}
+
+.fundo{
+  background-color: #1a1a1a;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-top: 60;
+}
+
+.destaque{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.etiqueta{
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #a0a0a0;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.chopin-info h2{
+  font-size: 56px;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.chopin-info p{
+  color: #a0a0a0;
+  margin-bottom: 15px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.viveu{
+  font-size: 20px;
+  color: #a0a0a0;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.estatisticas{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  border-top: 1px solid #333333;
+  padding-top: 30px;
+  margin-top: 30px;
+}
+
+.dado strong{
+  display: block;
+  font-size: 30px;
+  color: #d97706;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+.dado span{
+  font-size: 15px;
+  color: #a0a0a0;
+}
+
+.obra{
+  background-color: #242424;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imagem-obra{
+  width: 100%;
+  height: 250px;
+  background-image: url('https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=1000&auto=format&fit=crop');
+  background-position: center;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.conteudo-obra{
+  padding: 40px;
+}
+
+.conteudo-obra h3{
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.resumo-obra{
+  color: #a0a0a0;
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.caracteristicas-obra h4{
+  font-size: 15px;
+  color: #ffff;
+  margin-bottom: 10px;
+}
+
+.citacao{
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #e0e0e0;
+  border-left: 3px solid #d97706;
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+
