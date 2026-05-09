@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPUS | Login</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="./login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@200&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <div>
+
+            <h1>Login | OPUS</h1>
+
+            <div class="input-box">
+                <input placeholder="Usuário">
+                <i class="bx bxs-user"></i>
+                <span id="validacao_usuario" class="msg_validacao"></span>
+            </div>
+
+            <div class="input-box">
+                <input placeholder="Senha" type="password">
+                <i class="bx bxs-lock-alt"></i>
+                <span id="validacao_senha" class="msg_validacao"></span>
+            </div>
+
+            <button class="login" type="submit" onclick="login()">Login</button>
+
+            <div class="register-link">
+                <p>Não tem uma conta? <a href="cadastro.html" onclick="login()">Cadastre-se</a></p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+<script>
+
+    function login() {
+        
+
+        let usuario = ipt_usuario.value.trim();
+        let senha = ipt_senha.value.trim();
+
+        let ax_erro = false;
+
+        validacao_usuario.style.display = "none";
+        validacao_senha.style.display = "none";
+
+        if (usuario == '') {
+            validacao_usuario.innerHTML = `Campo Obrigatório`;
+            validacao_usuario.style.display = "block";
+            ax_erro = true;
+        }
+
+        if (senha == '') {
+            validacao_senha.innerHTML = `Campo Obrigatório`
+            validacao_senha.style.display = "block";
+            ax_erro = true;
+        }
+
+        if (!ax_erro) {
+            alert(`Cadastro realizado com sucesso!`)
+        }
+    }
+</script>
+
+</html>

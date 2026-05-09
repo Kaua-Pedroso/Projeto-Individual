@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | OPUS</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@200&display=swap">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Cadastro | OPUS</h1>
+
+        <div class="input-box">
+            <input placeholder="Usuário" id="ipt_usuario">
+            <i class="bx bxs-user"></i>
+            <span id="validacao_usuario" class="msg_validacao"></span>
+        </div>
+
+        <div class="input-box">
+            <input placeholder="Email" id="ipt_email">
+            <i class="bx bxs-envelope"></i>
+            <span id="validacao_email" class="msg_validacao"></span>
+        </div>
+
+        <div class="input-box">
+            <input placeholder="Senha" id="ipt_senha">
+            <i class="bx bxs-lock-alt"></i>
+            <span id="validacao_senha" class="msg_validacao"></span>
+        </div>
+
+        <div class="input-box">
+            <input placeholder="Confirme sua Senha" id="ipt_conf_senha">
+            <i class="bx bxs-lock-alt"></i>
+            <span id="validacao_confSenha" class="msg_validacao"></span>
+        </div>
+
+        <button class="cadastro" type="submit" onclick="cadastrar()">Cadastre-se</button>
+
+    </div>
+</body>
+<script>
+
+    function cadastrar() {
+
+        let usuario = ipt_usuario.value.trim();
+        let email = ipt_email.value.trim();
+        let senha = ipt_senha.value.trim();
+        let confSenha = ipt_conf_senha.value.trim();
+
+        let qtdNumero = 0;
+        let caracterEspecial = '!@#$%&*'
+        let possuiCaracEspecial = false;
+
+        let ax_erro = false;
+
+        validacao_usuario.style.display = "none";
+        validacao_email.style.display = "none";
+        validacao_senha.style.display = "none";
+        validacao_confSenha.style.display = "none";
+
+
+        if (usuario == '') {
+            validacao_usuario.innerHTML = `Campo Obrigatório`;
+            validacao_usuario.style.display = "block";
+            ax_erro = true;
+        }
+
+        if (email == '') {
+            validacao_email.innerHTML = `Campo Obrigatório`;
+            validacao_email.style.display = "block";
+            ax_erro = true;
+        }
+        else if (email.indexOf('@') < 0) {
+            validacao_email.innerHTML = `Insira um email válido`;
+            validacao_email.style.display = "block";
+            ax_erro = true;
+        }
+
+        for (ind = 0; ind < senha.length; ind++) {
+            let caracAtual = senha[ind];
+
+            if (caracAtual >= '0' && caracAtual <= '9') {
+                qtdNumero++;
+            }
+            else if (caracterEspecial.indexOf(caracAtual) >= 0) {
+                possuiCaracEspecial = true;
+            }
+        }
+
+        if (senha == '') {
+            validacao_senha.innerHTML = `Campo Obrigatório`
+            validacao_senha.style.display = "block";
+            ax_erro = true;
+        }
+
+        else if (senha.length < 8) {
+            validacao_senha.innerHTML = `Senha muito curta! Mínimo 8 caracteres`
+            validacao_senha.style.display = "block";
+            ax_erro = true;
+        }
+        else if (qtdNumero < 2) {
+            validacao_senha.innerHTML = `Senha fraca! Insira ao menos 2 números`
+            validacao_senha.style.display = "block";
+            ax_erro = true;
+        }
+        else if (!possuiCaracEspecial) {
+            validacao_senha.innerHTML = `Senha fraca! Insira ao menos 1 caracter especial (!@#$%&*)`
+            validacao_senha.style.display = "block";
+            ax_erro = true;
+        }
+
+
+        if (confSenha == '') {
+            validacao_confSenha.innerHTML = `Campo Obrigatório`;
+            validacao_confSenha.style.display = "block";
+            ax_erro = true;
+        }
+
+        else if (senha != confSenha) {
+            validacao_confSenha.innerHTML = `As senhas não coincidem`;
+            validacao_confSenha.style.display = "block";
+            ax_erro = true;
+        }
+
+        if (!ax_erro) {
+            alert(`Cadastro realizado com sucesso!`)
+        }
+    }
+</script>
+
+</html>
