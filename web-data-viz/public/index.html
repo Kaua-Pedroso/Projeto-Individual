@@ -1,82 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>OPUS | Classical Music</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@200&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+    <header class="header">
+        <section>
+            <a href="#" class="logo">
+                <img src="LINKAR" alt="logo">
+            </a>
 
+            <div class="navbar">
+                <a href="#">Home</a>
+                <a href="#about">Sobre</a>
+                <a href="#menu">Períodos</a>
+                <a href="#about-chopin">Chopin</a>
+                <a href="#ballade-N1">Ballade Nº1</a>
+            </div>
+
+            <div class="icons">
+                <a href="#" class="btn">Login</a>
+            </div>
+        </section>
+    </header>
+
+
+    <div class="home-container">
+        <section id="home">
+            <div class="content">
+                <h3>OPUS | Classical Music</h3>
+                <p>Transforme a sua Prática Musical em Excelência</p>
+            </div>
+
+        </section>
+    </div>
+
+    <section class="about" id="about">
+        <h2 class="title">A Música <span>Clássica</span></h2>
+        <div class="row">
+            <div class="container-image">
+                <img src="assets/img/Piano_Sobre.jpg" alt="Sobre Nós">
+            </div>
+            <div class="content">
+                <h3>Sobre</h3>
+                <p>A música clássica é uma tradição artística vasta que abrange mais de mil anos de história ocidental,
+                    fundamentada em sistemas complexos de notação musical, harmonia e forma. Diferente de gêneros
+                    populares que muitas vezes priorizam a repetição rítmica, a música clássica foca no desenvolvimento
+                    temático e na exploração de estruturas ricas, como sinfonias, sonatas e concertos.</p>
+                <p>Mais do que apenas um gênero, a música clássica é um testamento da capacidade humana de traduzir
+                    emoções complexas em sons organizados, servindo como a base para quase toda a teoria musical que
+                    conhecemos hoje.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="menu" id="menu">
+        <h2 class="title">Períodos da <span>Música Clássica</span></h2>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="img-box">
+                    <img src="assets/img/Bach.avif" alt="IMAGE PERIODO">
+                </div>
+                <div class="content">
+                    <h3>Barroco</h3>
+                    <p>Marcado pela complexidade e pelo uso intenso do contraponto. Artistas: <span>Bach e Vivaldi</span></p>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="img-box">
+                    <img src="assets/img/Mozart.webp"
+                        alt="IMAGE PREIODO">
+                </div>
+                <div class="content">
+                    <h3>Clássico</h3>
+                    <p>Busca pela clareza, equilíbrio e formas estruturadas. Artistas: <span>Mozart e Haydn</span></p>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="img-box">
+                    <img src="assets/img/Franz_Liszt.jpg"IMAGE PERIODO">
+                </div>
+                <div class="content">
+                    <h3>Romântico</h3>
+                    <p>Ênfase na expressão emocional e no individualismo. Artistas: <span>Beethoven e Chopin</span></p>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="img-box">
+                    <img src="assets/img/Claude_Debussy.jpg" alt="IMAGE PERIODO">
+                </div>
+                <div class="content">
+                    <h3>Moderno</h3>
+                    <p>tradicional e experimentação rítmica. Artistas: <span>Stravinsky e Debussy</span></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="about-chopin" id="about-chopin">
+        <h2 class="title">Sobre <span>Chopin</span></h2>
+        <div class="row">
+
+            <div class="container-image">
+                <img src="assets/img/Chopin.jpg"
+                    alt="">
+            </div>
+
+            <div class="content">
+                <h3>Frédéric Chopin (1810–1849)</h3>
+
+                <p> Mestre do período Romântico e um dos compositores mais influentes
+                    da história da música clássica.
+                    Polonês de nascimento e radicado em Paris, sua música combina o vigor técnico com uma sensibilidade
+                    melódica incomparável. Entre suas criações mais célebres estão as Noturnos, Polonaises e a
+                    monumental Balada nº 1, obras que continuam a definir o ápice do repertório pianístico mundial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ballade-N1" id="ballade-N1">
+        <h2 class="title">Ballade Nº1</h2>
+        <div class="juncao">
+
+            <div class="container-vid">
+                <video src="assets/img/Coda Ballade.mp4" controls width="100%"></video>
+            </div>
+
+            <div class="content">
+                <p>A <span>Balada nº 1</span> é um marco na história da música clássica por ter sido a primeira peça
+                    instrumental a
+                    receber o título de "Balada", um termo anteriormente reservado apenas à poesia ou a canções com
+                    narrativa. Inspirada, segundo relatos da época, pelos poemas patrióticos de Adam Mickiewicz, a obra
+                    não segue uma estrutura rígida, mas sim uma jornada emocional dramática.
+
+                    A peça é famosa por sua introdução solene e pelo desenvolvimento de temas que variam entre a
+                    melancolia profunda e o virtuosismo técnico explosivo. Seu encerramento, uma coda extremamente
+                    rápida e exigente, é testamento da genialidade de Chopin e de sua busca por elevar o piano a novos
+                    limites de expressão. Obra que simboliza a perfeita união entre a estrutura clássica e a alma do
+                    romantismo.</p>
+
+                    <a href="#" class="btn">Registre Seu Estudo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="contact">
+            <img width="30" height="30" src="https://img.icons8.com/ios/50/ffffff/instagram-new--v1.png" alt="instagram-new--v1"/>
+            <img width="30" height="30" src="https://img.icons8.com/ios/50/ffffff/facebook-new.png" alt="facebook-new"/>
+        </div>
+    </section>
+</body>
 </html>
