@@ -1,0 +1,48 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo | OPUS</title>
+    <link rel="stylesheet" href="./css/estudo.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <section class="nav-container">
+            <div class="navbar">
+                <a href="#">Registre seu Estudo</a>
+                <a href="dashboard/dashboard.html">Dashboard</a>
+                <a href="#">Perfil</a>
+            </div>
+        </section>
+    </header>
+
+    <div class="container">
+        <h1>Registrar Estudo</h1>
+
+        <div class="input-box">
+            <input type="number" placeholder="Horas de Estudo" id="ipt_horas">
+            <i class='bx bxs-time-five'></i>
+        </div>
+
+        <div class="input-box">
+            <input type="text" placeholder="Compositor" id="ipt_compositor">
+            <i class='bx bxs-music'></i>
+        </div>
+
+        <div class="input-box">
+            <input type="text" placeholder="Técnica" id="ipt_tecnica">
+        </div>
+
+        <button class="registrar-btn" onclick="registrar()">Registrar Estudo</button>
+    </div>
+
+    <script>
+        function registrar() {
+            
+            alert("Estudo registrado!");
+        }
+    </script>
+</body>
+</html>

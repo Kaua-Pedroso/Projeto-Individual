@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>OPUS | Login</title>
+
+    <script src="./js/sessao.js"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,13 +26,13 @@
             <h1>Login | OPUS</h1>
 
             <div class="input-box">
-                <input placeholder="Usuário">
+                <input placeholder="Email" id="ipt_email">
                 <i class="bx bxs-user"></i>
                 <span id="validacao_usuario" class="msg_validacao"></span>
             </div>
 
             <div class="input-box">
-                <input placeholder="Senha" type="password">
+                <input placeholder="Senha" id="ipt_senha" type="password">
                 <i class="bx bxs-lock-alt"></i>
                 <span id="validacao_senha" class="msg_validacao"></span>
             </div>
@@ -35,42 +40,86 @@
             <button class="login" type="submit" onclick="login()">Login</button>
 
             <div class="register-link">
-                <p>Não tem uma conta? <a href="cadastro.html" onclick="login()">Cadastre-se</a></p>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
 
         </div>
 
     </div>
 </body>
+
+</html>
+
 <script>
 
-    function login() {
+
+       function login() {
         
 
-        let usuario = ipt_usuario.value.trim();
-        let senha = ipt_senha.value.trim();
+        let emailVar = ipt_email.value.trim();
+        let senhaVar = ipt_senha.value.trim();
 
         let ax_erro = false;
 
         validacao_usuario.style.display = "none";
         validacao_senha.style.display = "none";
 
-        if (usuario == '') {
+        if (emailVar == '') {
             validacao_usuario.innerHTML = `Campo Obrigatório`;
             validacao_usuario.style.display = "block";
             ax_erro = true;
         }
 
-        if (senha == '') {
+        if (senhaVar == '') {
             validacao_senha.innerHTML = `Campo Obrigatório`
             validacao_senha.style.display = "block";
             ax_erro = true;
         }
 
-        if (!ax_erro) {
-            alert(`Cadastro realizado com sucesso!`)
-        }
-    }
-</script>
+        if(ax_erro == false)
 
-</html>
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

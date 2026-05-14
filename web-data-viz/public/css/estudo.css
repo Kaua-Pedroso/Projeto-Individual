@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Roboto:wght@200&display=swap');
+
+:root{
+    --main-color: #d3ad7f;
+    --black: #13131a;
+    --bg: #010103;
+    --border: 0.1rem solid rgba(255,255,255,0.3);
+    font-size: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: 0.2s linear;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../assets/img/registre-estudo.jpg);    
+    background-size: cover;
+    background-position: center;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 1px var(--border);
+    background-color: var(--bg);
+}
+
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    margin: 0 auto;
+}
+
+.navbar a{
+    margin: 0 1rem;
+    font-size: 2.7rem;
+    color: #fff;
+    font-weight: 200;
+}
+
+.navbar a:hover{
+    color: var(--main-color);
+    border-bottom: 0.1rem solid var(--main-color);
+    padding-bottom: 0.5rem;
+    font-size: 2.9rem;
+}
+
+.container{
+    width: 420px;
+    background-color: rgba(0,0,0,0.6);
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    backdrop-filter: blur(5px);
+    margin-top: 80px;
+    color: #fff;
+}
+
+.container h1{
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 25px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 45px 0 20px;
+}
+
+.input-box input::placeholder{
+    color: #e3dbdb;
+    font-weight: 200;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.registrar-btn{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--black);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.registrar-btn:hover{
+    background-color: var(--main-color);
+    color: #fff;
+}
