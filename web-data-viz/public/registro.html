@@ -1,4 +1,5 @@
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header class="header">
         <section class="nav-container">
@@ -36,7 +38,16 @@
         </div>
 
         <div class="input-box">
-            <input type="text" placeholder="Compositor" id="ipt_compositor">
+            <select id="sel_compositor" required>
+                <option value="" disabled selected>Selecione o Compositor</option>
+
+                <option value="1">Frédéric Chopin</option>
+                <option value="2">Johann Sebastian Bach</option>
+                <option value="3">Franz Liszt</option>
+                <option value="4">Ludwig van Beethoven</option>
+                <option value="5">Sergei Rachmaninoff</option>
+            </select>
+            
             <i class='bx bxs-music'></i>
         </div>
 
@@ -48,11 +59,50 @@
     </div>
 
     <script>
-        
+
         function registrar() {
-            
+
             alert("Estudo registrado!");
+
+            let horasVar = ipt_horas.value.trim();
+            let compositorVar = sel_compositor.value;
+            let tecnicaVar = ipt_tecnica.value.trim();
+            let idUsuarioVar = sessionStorage.ID_USUARIO;
+
+            let ax_erro = false;
+
+
+            if (horasVar == '' || compositorVar == '' || tecnicaVar == '') {
+                alert(`Todos os campos são obrigatórios`)
+                ax_erro = true;
+            }
+
+            if (ax_erro == false) {
+                fetch("/estudo/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        horasServer: horasVar,
+                        compositorServer: compositorVar,
+                        tecnicaServer: tecnicaVar,
+                        idUsuarioServer: idUsuarioVar
+                    })
+                }).then(function (resposta) {
+
+                    if (resposta.ok) {
+                        console.log("Estudo registrado com sucesso")
+                        window.location = "dashboard.html";
+                    } else {
+                        throw ("Houve um erro no registro!");
+                    }
+                }).catch(function (erro) {
+                    console.log(`#ERRO ${erro}`)
+                })
+
+                return false;
+            }
         }
     </script>
 </body>
+
 </html>

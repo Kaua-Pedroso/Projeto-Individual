@@ -25,7 +25,7 @@ periodo varchar (45)
 CREATE TABLE estudo (
 id INT PRIMARY KEY auto_increment,
 tecnica varchar (45),
-tempo_minutos INT,
+horas INT,
 data_estudo DATETIME DEFAULT current_timestamp,
 fkUsuario INT,
 	CONSTRAINT fkEstudoUsuario	
