@@ -10,11 +10,20 @@
 <body>
     <header class="header">
         <section class="nav-container">
-            <div class="navbar">
-                <a href="#">Registre seu Estudo</a>
-                <a href="dashboard/dashboard.html">Dashboard</a>
-                <a href="#">Perfil</a>
+
+            <div class="navbar-left">
+                <span>Olá, <b id="b_usuario">Usuário</b></span>
             </div>
+
+            <div class="navbar-center">
+                <a href="#">Registre seu Estudo</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+
+            <div class="navbar-right">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+
         </section>
     </header>
 
@@ -39,6 +48,7 @@
     </div>
 
     <script>
+        
         function registrar() {
             
             alert("Estudo registrado!");

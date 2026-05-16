@@ -24,7 +24,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(../assets/img/registre-estudo.jpg);    
+    background: url(../assets/img/fundo-dash.jpg);    
     background-size: cover;
     background-position: center;
 }
@@ -42,7 +42,7 @@ body{
 .nav-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 3rem 2rem;
     margin: 0 auto;
 }
@@ -101,69 +101,40 @@ body{
     letter-spacing: 0.3rem;
 }
 
-.container{
-    width: 420px;
-    background-color: rgba(0,0,0,0.6);
-    border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 10px;
-    padding: 30px 40px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    backdrop-filter: blur(5px);
-    margin-top: 80px;
-    color: #fff;
+.container-dash{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    gap: 30px;
 }
 
-.container h1{
-    font-size: 30px;
-    font-weight: 200;
+.kpis{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.card{
+    background: rgba(0, 0, 0, 0.336);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
     text-align: center;
-    margin-bottom: 20px;
+    color: white;
 }
 
-.input-box{
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 25px 0;
+.card h3{
+    font-size: 2rem;
+    margin-bottom: 10px;
+    opacity: 0.8;
 }
 
-.input-box input{
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px;
-    font-size: 16px;
-    color: #fff;
-    padding: 0 45px 0 20px;
-}
-
-.input-box input::placeholder{
-    color: #e3dbdb;
-    font-weight: 200;
-}
-
-.input-box i{
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-}
-
-.registrar-btn{
-    width: 100%;
-    height: 50px;
-    background-color: #fff;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--black);
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-.registrar-btn:hover{
-    background-color: var(--main-color);
-    color: #fff;
+.card p{
+    font-size: 1rem;
+    margin: 10px 0;
 }
