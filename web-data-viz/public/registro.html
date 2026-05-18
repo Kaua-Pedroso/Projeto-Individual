@@ -102,6 +102,21 @@
                 return false;
             }
         }
+
+        function limparSessao(){
+            sessionStorage.clear();
+            window.location = "index.html";
+        }
+
+        window.onload = function(){
+            let nome = sessionStorage.NOME_USUARIO;
+
+            if(nome != undefined){
+                b_usuario.innerHTML = nome;
+            } else{
+                window.location = "login.html";
+            }
+        }
     </script>
 </body>
 
