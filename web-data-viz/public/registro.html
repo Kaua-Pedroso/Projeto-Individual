@@ -71,12 +71,23 @@
 
             let ax_erro = false;
 
+            validacao_horas.style.display = "none";
+            validacao_tecnica.style.display = "none";
 
-            if (horasVar == '' || compositorVar == '' || tecnicaVar == '') {
-                alert(`Todos os campos são obrigatórios`)
+
+            if(horasVar == ''){
+                validacao_horas.innerHTML = `Campo Obrigatório`
                 ax_erro = true;
             }
-
+            if(tecnicaVar == ''){
+                validacao_tecnica.innerHTML = `Campo obrigatório`
+                ax_erro = true;
+            }
+            if(horasVar < 0){
+                validacao_horas.innerHTML = `O número de horas deve ser positivo`
+                ax_erro = true;
+            }
+            
             if (ax_erro == false) {
                 fetch("/estudo/cadastrar", {
                     method: "POST",

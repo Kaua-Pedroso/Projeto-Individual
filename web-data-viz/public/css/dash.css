@@ -197,5 +197,5 @@ body{
     height: 100%;
     object-fit: cover;
     display: block !important; 
-    filter: sepia(0.3) brightness(0.7); /* Dá um tom mais clássico/envelhecido */
+    filter: sepia(0.3) brightness(0.7);
 }
