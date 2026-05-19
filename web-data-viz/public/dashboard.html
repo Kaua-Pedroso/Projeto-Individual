@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DashBoard | OPUS</title> 
+    <title>DashBoard | OPUS</title>
     <link rel="stylesheet" href="./css/dash.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
-     <header class="header">
+    <header class="header">
         <section class="nav-container">
-          
+
             <div class="navbar-left">
                 <span>Olá, <b id="b_usuario">Usuário</b></span>
             </div>
@@ -33,19 +35,102 @@
         <div class="kpis">
 
             <div class="card">
-                <h3>Compositor Favorito</h3>
-                <p>Horas Estudas</p>
+                <div class="card-header">
+                    <img id="img_compositor" src="" alt="Imagem Compositor">
+                </div>
+
+                <div class="card-body">
+                    <h3>Compositor Favorito</h3>
+                    <p id="kpi_compositor">Carregando...</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Total de Estudo</h3>
+            <div class="card card-total">
+
+                <div class="card-header">
+                    <img src="assets/img/card-foc.jpg" class="img-kpi" alt="IMAGEM CARD">
+                </div>
+
+                <div class="card-body">
+                    <h3>Total de Estudo</h3>
+                    <p id="kpi_total">0h</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Foco Técnico</h3>
-                <p>Horas Estudadas</p>
+            <div class="card card-foco">
+
+                <div class="card-header">
+                    <img src="assets/img/card-foco.jpg" class="img-kpi" alt="IMAGEM CARD">
+                </div>
+
+                <div class="card-body">
+                    <h3>Foco Técnico</h3>
+                    <p id="kpi_tecnica">Carregando...</p>
+                </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
+<script>
+
+    window.onload = function () {
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        exibirEstatisticas();
+    }
+
+    function exibirEstatisticas() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+        const listaFotos = [
+            { nome: "Frédéric Chopin", foto: "assets/img/Chopin.jpg", classe: "chopin" },
+            { nome: "Johann Sebastian Bach", foto: "assets/img/Bach.avif", classe: "bach" },
+            { nome: "Franz Liszt", foto: "assets/img/Franz_Liszt.jpg", classe: "liszt" },
+            { nome: "Ludwig Van Beethoven", foto: "assets/img/Beethoven.jpg", classe: "beethoven" },
+            { nome: "Sergei Rachmaninoff", foto: "assets/img/Rachmaninoff.jpg", classe: "rachmaninoff" }
+        ]
+
+        fetch(`/estudo/estatisticas/${idUsuario}`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+
+                    resposta.json().then(json => {
+                        console.log("Dados recebidos:", json);
+
+                        kpi_total.innerHTML = `${json.total_horas || 0}h`;
+                        kpi_compositor.innerHTML = json.compositor_favorito || "Nenhum";
+                        kpi_tecnica.innerHTML = json.tecnica_foco || "Nenhum";
+
+
+                        if (json.compositor_favorito) {
+                            let compositorEncontrado = null;
+
+                            // For para encontrar o Compositor
+                            for (let i = 0; i < listaFotos.length; i++) {
+                                if (listaFotos[i].nome == json.compositor_favorito) {
+                                    compositorEncontrado = listaFotos[i];
+                                    break;
+                                }
+                            }
+
+                            if (compositorEncontrado != null) {
+                                img_compositor.src = compositorEncontrado.foto;
+                                img_compositor.className = compositorEncontrado.classe;
+                                img_compositor.style.display = "block"
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Erro ao recuperar estatísticas");
+                }
+            })
+            .catch(err => console.error("Erro na requisição:", err));
+
+    }
+
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location = "index.html";
+    }
+</script>

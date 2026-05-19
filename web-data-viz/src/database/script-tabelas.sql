@@ -37,14 +37,21 @@ fkCompositor INT,
 			REFERENCES compositor (id)
 );
 
+select * from usuario;
+select * from estudo;
+select * from compositor;
 
-INSERT INTO usuario (nome,email,senha) VALUES 
-('Kauã', 'kaua@pedroso','senhaTop@123');
+SELECT e.*, c.nome as nome_compositor 
+FROM estudo e 
+JOIN compositor c ON e.fkCompositor = c.id;
 
-INSERT INTO compositor (nome,periodo) VALUES 
-('Franz Liszt', 'Romântico'),
-('Chopin','Romântico');
+INSERT INTO compositor (nome) VALUES 
+('Frédéric Chopin'), 
+('Johann Sebastian Bach'), 
+('Franz Liszt'), 
+('Ludwig Van Beethoven'), 
+('Sergei Rachmaninoff');
 
-INSERT INTO estudo (tecnica, tempo_minutos, fkUsuario, fkCompositor) VALUES
-('Escalas e Arpejos', 30, 1, 1),
-('Oitavas', 45, 1, 2);
+CREATE USER 'user_opus'@'localhost' IDENTIFIED BY 'opus@123';
+GRANT ALL PRIVILEGES ON opus.* TO 'user_opus'@'localhost';
+FLUSH PRIVILEGES;
