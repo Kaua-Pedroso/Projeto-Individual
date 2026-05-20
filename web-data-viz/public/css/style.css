@@ -267,12 +267,12 @@ section{
     text-decoration:underline;
 }
 
-.ballade-N1 .container-vid video {
+.ballade-N1 .container-vid iframe {
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(211, 173, 127, 0.2); 
 }
 
-.ballade-N1 .container-vid video:hover {
+.ballade-N1 .container-vid iframe:hover {
     transform: scale(1.02); 
     box-shadow: 0 12px 33px rgba(211, 173, 127, 0.4);
 }

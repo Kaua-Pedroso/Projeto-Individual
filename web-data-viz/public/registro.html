@@ -35,6 +35,7 @@
         <div class="input-box">
             <input type="number" placeholder="Horas de Estudo" id="ipt_horas">
             <i class='bx bxs-time-five'></i>
+            <span id="validacao_horas" class="msg_validacao"></span>
         </div>
 
         <div class="input-box">
@@ -53,6 +54,7 @@
 
         <div class="input-box">
             <input type="text" placeholder="Técnica" id="ipt_tecnica">
+            <span id="validacao_tecnica" class="msg_validacao"></span>
         </div>
 
         <button class="registrar-btn" onclick="registrar()">Registrar Estudo</button>
@@ -87,7 +89,7 @@
                 validacao_horas.innerHTML = `O número de horas deve ser positivo`
                 ax_erro = true;
             }
-            
+
             if (ax_erro == false) {
                 fetch("/estudo/cadastrar", {
                     method: "POST",
