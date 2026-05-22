@@ -11,7 +11,7 @@ function cadastrar(horas,idCompositor,tecnica,idUsuario) {
 function buscarEstatisticas(idUsuario){
   var instrucaoSql = 
   `SELECT
-
+    
     (SELECT SUM(horas) FROM estudo WHERE fkUsuario = ${idUsuario}) as total_horas,
     
     (SELECT c.nome FROM estudo AS e
@@ -21,12 +21,22 @@ function buscarEstatisticas(idUsuario){
       GROUP BY fkCompositor
         ORDER BY SUM(horas) DESC LIMIT 1) AS compositor_favorito,
         
-    (SELECT tecnica FROM estudo
+    (SELECT tecnica FROM estudo AS e 
       WHERE fkUsuario = ${idUsuario}
-      GROUP BY tecnica
-        ORDER BY COUNT(*) DESC LIMIT 1) AS tecnica_foco
+        GROUP BY e.tecnica
+          ORDER BY SUM(e.horas) DESC LIMIT 1) AS tecnica_foco,
         
-    FROM usuario
+    (SELECT SUM(e2.horas) FROM estudo AS e2
+      JOIN compositor AS c2
+        ON e2.fkCompositor = c2.id
+          WHERE e2.fkUsuario = ${idUsuario} AND c2.nome = compositor_favorito) AS horas_compositor,
+
+    (SELECT SUM(e.horas) FROM estudo AS e 
+      WHERE e.fkUsuario = ${idUsuario}
+        GROUP BY e.tecnica
+          ORDER BY SUM(e.horas) DESC LIMIT 1) AS horas_tecnica
+          
+    FROM usuario 
       WHERE id = ${idUsuario}`
 
       console.log("Executando a instrução SQL: \n" + instrucaoSql);

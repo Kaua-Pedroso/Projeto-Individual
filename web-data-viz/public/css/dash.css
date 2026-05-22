@@ -199,3 +199,16 @@ body{
     display: block !important; 
     filter: sepia(0.3) brightness(0.7);
 }
+
+.sub-kpi{
+    display: block;
+    font-size: 2rem;
+    color: #cecece;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+.sub-kpi b{
+    color: #d4a373;
+    font-weight: 600;
+}

@@ -52,6 +52,6 @@ INSERT INTO compositor (nome) VALUES
 ('Ludwig Van Beethoven'), 
 ('Sergei Rachmaninoff');
 
-CREATE USER 'user_opus'@'localhost' IDENTIFIED BY 'opus@123';
-GRANT ALL PRIVILEGES ON opus.* TO 'user_opus'@'localhost';
+CREATE USER 'user_opus'@'%' IDENTIFIED BY 'Opus@123';
+GRANT ALL PRIVILEGES ON opus.* TO 'user_opus'@'%';
 FLUSH PRIVILEGES;

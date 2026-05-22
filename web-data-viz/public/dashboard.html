@@ -42,6 +42,7 @@
                 <div class="card-body">
                     <h3>Compositor Favorito</h3>
                     <p id="kpi_compositor">Carregando...</p>
+                    <span class="sub-kpi">Horas: <b id="kpi_horasCompositor">0h</b></span>
                 </div>
             </div>
 
@@ -50,7 +51,7 @@
                 <div class="card-header">
                     <img src="assets/img/card-foc.jpg" class="img-kpi" alt="IMAGEM CARD">
                 </div>
-
+                    
                 <div class="card-body">
                     <h3>Total de Estudo</h3>
                     <p id="kpi_total">0h</p>
@@ -66,6 +67,7 @@
                 <div class="card-body">
                     <h3>Foco Técnico</h3>
                     <p id="kpi_tecnica">Carregando...</p>
+                    <span class="sub-kpi">Horas: <b id="kpi_horasTecnica">0h</b></span>
                 </div>
             </div>
         </div>
@@ -102,6 +104,8 @@
                         kpi_compositor.innerHTML = json.compositor_favorito || "Nenhum";
                         kpi_tecnica.innerHTML = json.tecnica_foco || "Nenhum";
 
+                        kpi_horasCompositor.innerHTML = `${json.horas_compositor || 0}h`
+                        kpi_horasTecnica.innerHTML = `${json.horas_tecnica || 0}h`
 
                         if (json.compositor_favorito) {
                             let compositorEncontrado = null;

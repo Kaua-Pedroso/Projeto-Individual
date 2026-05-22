@@ -193,6 +193,7 @@ body{
 }
 
 .registrar-btn:hover{
-    background-color: var(--main-color);
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
     color: #fff;
 }
