@@ -18,12 +18,11 @@ senha varchar (45) NOT NULL
 
 CREATE TABLE compositor (
 id INT PRIMARY KEY auto_increment,
-nome varchar (60),
-periodo varchar (45)
+nome varchar (60)
 );
 
 CREATE TABLE estudo (
-id INT PRIMARY KEY auto_increment,
+id INT auto_increment,
 tecnica varchar (45),
 horas INT,
 data_estudo DATETIME DEFAULT current_timestamp,
@@ -34,7 +33,8 @@ fkUsuario INT,
 fkCompositor INT,
 	CONSTRAINT fkEstudoCompositor
 		FOREIGN KEY (fkCompositor)
-			REFERENCES compositor (id)
+			REFERENCES compositor (id),
+PRIMARY KEY (id,fkUsuario,fkCompositor)
 );
 
 select * from usuario;
@@ -54,4 +54,4 @@ INSERT INTO compositor (nome) VALUES
 
 CREATE USER 'user_opus'@'%' IDENTIFIED BY 'Opus@123';
 GRANT ALL PRIVILEGES ON opus.* TO 'user_opus'@'%';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES; 
