@@ -93,6 +93,7 @@ body{
 }
 
 .register-link a{
+    background-color: rgba(rgb(7, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 0.6);
     text-decoration: none;
     color: #fff;
     font-weight: 500;

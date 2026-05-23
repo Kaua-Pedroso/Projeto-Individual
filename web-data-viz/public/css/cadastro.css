@@ -93,3 +93,19 @@ body{
     text-align: left;
     width: 100%;
 }
+
+.register-link{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.register-link a:hover{
+    text-decoration: underline;
+}

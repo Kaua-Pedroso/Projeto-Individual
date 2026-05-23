@@ -77,15 +77,16 @@ section{
 .btn{
     background: var(--main-color);
     color: #fff;
-    padding: 1rem 3rem;
+    padding: 1rem 5rem;
     font-size: 1.7rem;
     cursor: pointer;
     margin: 1rem;
-   
+    border-radius: 10px;
+    border: 1px solid #838383;
 }
 
 .btn:hover{
-    letter-spacing: 0.1rem;
+    background-color: transparent;
 }
 
 .home-container{
@@ -131,7 +132,6 @@ section{
 }
 .about .row{
     display: flex;
-    align-items: center;
     background-color: var(--black);
     gap: 0;
     padding: 0;
@@ -139,7 +139,6 @@ section{
 
 .about .row .content{
     padding: 2rem;
-
 }
 
 .about .row .content h3{
@@ -165,6 +164,18 @@ section{
     display: block;
 }
 
+.about .row .container-image-explicacao{
+    flex: 1 1 180rem;
+    display: flex;
+}
+
+.about .row .container-image-explicacao img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .menu .box-container{
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -176,6 +187,7 @@ section{
     background-color: var(--black);
     border: var(--border);
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .menu .box-container .box .container-imag-box{
@@ -219,7 +231,7 @@ section{
 
 .about-chopin .row .container-image{
     flex: 1 1 180rem;
-    padding-right: 20px;
+    padding-right: 40px;
 }
 
 .about-chopin .row .container-image img{
@@ -259,7 +271,8 @@ section{
     color: #fff;
     line-height: 1.6;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
+    text-align: justify;
 }
 
 .ballade-N1 .content span{
@@ -270,11 +283,6 @@ section{
 .ballade-N1 .container-vid iframe {
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(211, 173, 127, 0.2); 
-}
-
-.ballade-N1 .container-vid iframe:hover {
-    transform: scale(1.02); 
-    box-shadow: 0 12px 33px rgba(211, 173, 127, 0.4);
 }
 
 .footer{

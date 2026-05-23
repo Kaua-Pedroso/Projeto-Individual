@@ -1,16 +1,16 @@
 var database = require("../database/config");
 
-function cadastrar(horas,idCompositor,tecnica,idUsuario) {
-  
+function cadastrar(horas, idCompositor, tecnica, idUsuario) {
+
   var instrucaoSql = `INSERT INTO estudo (tecnica, horas, fkUsuario, fkCompositor) VALUES ('${tecnica}',${horas},${idUsuario},${idCompositor})`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
-function buscarEstatisticas(idUsuario){
-  var instrucaoSql = 
-  `SELECT
+function buscarEstatisticas(idUsuario) {
+  var instrucaoSql =
+    `SELECT
     
     (SELECT SUM(horas) FROM estudo WHERE fkUsuario = ${idUsuario}) as total_horas,
     
@@ -39,12 +39,61 @@ function buscarEstatisticas(idUsuario){
     FROM usuario 
       WHERE id = ${idUsuario}`
 
-      console.log("Executando a instrução SQL: \n" + instrucaoSql);
-      return database.executar(instrucaoSql);
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarUltimoEstudo(idUsuario) {
+  var instrucaoSql = `
+        SELECT 
+            c.nome AS compositor, 
+            e.tecnica, 
+            e.horas, 
+            DATE_FORMAT(e.data_estudo, '%d/%m/%Y') AS data_formatada
+        FROM estudo AS e
+        JOIN compositor AS c ON e.fkCompositor = c.id
+        WHERE e.fkUsuario = ${idUsuario}
+        ORDER BY e.id DESC 
+        LIMIT 1;`
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 
+function buscarDadosGraficoRosca(idUsuario) {
+  var instrucaoSql = `
+        SELECT 
+            c.nome AS compositor, 
+            SUM(e.horas) AS horas
+        FROM estudo AS e
+        JOIN compositor AS c ON e.fkCompositor = c.id
+        WHERE e.fkUsuario = ${idUsuario}
+        GROUP BY c.nome;
+    `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarDadosGraficoLinha(idUsuario) {
+    // Agrupa as horas por dia e ordena do mais antigo para o mais recente (limite de 7 dias)
+    var instrucaoSql = `
+        SELECT 
+            DATE_FORMAT(data_estudo, '%d/%m') as dia,
+            SUM(horas) as total_horas
+        FROM estudo
+        WHERE fkUsuario = ${idUsuario}
+        GROUP BY DATE_FORMAT(data_estudo, '%d/%m'), DATE(data_estudo)
+        ORDER BY DATE(data_estudo) ASC
+        LIMIT 7;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
   cadastrar,
-  buscarEstatisticas
+  buscarEstatisticas,
+  buscarUltimoEstudo,
+  buscarDadosGraficoRosca,
+  buscarDadosGraficoLinha
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/dash.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -51,7 +52,7 @@
                 <div class="card-header">
                     <img src="assets/img/card-foc.jpg" class="img-kpi" alt="IMAGEM CARD">
                 </div>
-                    
+
                 <div class="card-body">
                     <h3>Total de Estudo</h3>
                     <p id="kpi_total">0h</p>
@@ -71,19 +72,96 @@
                 </div>
             </div>
         </div>
-    </div>
+
+
+        <div class="secao-grafico">
+
+            <div class="chart-box tamanho-chart">
+                <h3>Horas Estudadas (Últimos 7 dias)</h3>
+                <div class="canvas-container tamanho-canvas">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="secao-kpi_grafico">
+
+                <div class="chart-box metade">
+                    <h3>Distribuição por Compositor</h3>
+                    <span id="resposta-matematica" class="matematica"></span>
+                    <div class="canvas-container">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="estudo-recente metade">
+                    <div class="estudo-header">
+                        <i class='bx bx-time-five'></i>
+                        <h3>Último Estudo</h3>
+                    </div>
+
+                    <div class="estudo-body">
+                        <p class="data-estudo" id="recent_data">Carregando...</p>
+                        <h2 id="recent_compositor">Compositor</h2>
+                        <span class="estudo-tecnica" id="recent_tecnica">Técnica</span>
+
+                        <div class="estudo-footer">
+                            <span>Tempo focado:</span>
+                            <b id="recent_horas">0h</b>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 </body>
 
 </html>
 <script>
 
+    Chart.defaults.color = '#cecece';
+    Chart.defaults.font.family = '"Roboto", sans-serif';
+
+
     window.onload = function () {
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+
         exibirEstatisticas();
+        carregarUltimoEstudo();
+
+
+        obterDadosGraficoLinha(idUsuario);
+        obterDadosGraficoRosca(idUsuario);
     }
 
-    function exibirEstatisticas() {
 
+    function carregarUltimoEstudo() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/estudo/ultimoEstudo/${idUsuario}`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    if (json.length > 0) {
+                        var dados = json[0];
+                        document.getElementById("recent_data").innerHTML = dados.data_formatada;
+                        document.getElementById("recent_compositor").innerHTML = dados.compositor;
+                        document.getElementById("recent_tecnica").innerHTML = dados.tecnica;
+                        document.getElementById("recent_horas").innerHTML = dados.horas + "h";
+                    }
+                });
+            } else {
+                console.error("Erro na resposta da API");
+            }
+        }).catch(function (erro) {
+            console.error("Erro no fetch:", erro);
+        });
+    }
+
+
+    function exibirEstatisticas() {
         var idUsuario = sessionStorage.ID_USUARIO;
         const listaFotos = [
             { nome: "Frédéric Chopin", foto: "assets/img/Chopin.jpg", classe: "chopin" },
@@ -96,28 +174,21 @@
         fetch(`/estudo/estatisticas/${idUsuario}`)
             .then(function (resposta) {
                 if (resposta.ok) {
-
                     resposta.json().then(json => {
-                        console.log("Dados recebidos:", json);
-
                         kpi_total.innerHTML = `${json.total_horas || 0}h`;
                         kpi_compositor.innerHTML = json.compositor_favorito || "Nenhum";
                         kpi_tecnica.innerHTML = json.tecnica_foco || "Nenhum";
-
                         kpi_horasCompositor.innerHTML = `${json.horas_compositor || 0}h`
                         kpi_horasTecnica.innerHTML = `${json.horas_tecnica || 0}h`
 
                         if (json.compositor_favorito) {
                             let compositorEncontrado = null;
-
-                            // For para encontrar o Compositor
                             for (let i = 0; i < listaFotos.length; i++) {
                                 if (listaFotos[i].nome == json.compositor_favorito) {
                                     compositorEncontrado = listaFotos[i];
                                     break;
                                 }
                             }
-
                             if (compositorEncontrado != null) {
                                 img_compositor.src = compositorEncontrado.foto;
                                 img_compositor.className = compositorEncontrado.classe;
@@ -125,12 +196,137 @@
                             }
                         }
                     });
-                } else {
-                    console.error("Erro ao recuperar estatísticas");
                 }
             })
             .catch(err => console.error("Erro na requisição:", err));
+    }
 
+
+    function obterDadosGraficoLinha(idUsuario) {
+        fetch(`/estudo/dadosGraficoLinha/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    plotarGraficoLinha(resposta, idUsuario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGraficoLinha(resposta, idUsuario) {
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Horas Dedicadas',
+                data: [],
+                borderColor: '#d3ad7f',
+                backgroundColor: 'rgba(211, 173, 127, 0.1)',
+                tension: 0.3,
+                borderWidth: 3,
+                fill: true
+            }]
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.dia);
+            dados.datasets[0].data.push(registro.total_horas);
+        }
+
+        const config = {
+            type: 'line',
+            data: dados,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        };
+
+        let myChart = new Chart(document.getElementById('lineChart'), config);
+    }
+
+
+    function obterDadosGraficoRosca(idUsuario) {
+        fetch(`/estudo/dadosGraficoRosca/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    plotarGraficoRosca(resposta, idUsuario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGraficoRosca(resposta, idUsuario) {
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                data: [],
+                backgroundColor: ['#d3ad7f', '#a88457', '#7e5f39', '#543d22', '#302211'],
+                borderWidth: 2,
+                borderColor: '#13131a'
+            }]
+        };
+        // Variáveis para guardar operação matemática
+        let totalHorasPlataforma = 0;
+        let horasMaiorCompositor = 0;
+        let nomeMaiorCompositor = "";
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.compositor);
+            dados.datasets[0].data.push(registro.horas);
+
+            // Somando total de horas de todos os compositores;
+            totalHorasPlataforma += Number(registro.horas);
+
+            // Qual compositor tem a maior quantidade de horas;
+            if (Number(registro.horas) > horasMaiorCompositor) {
+                horasMaiorCompositor = Number(registro.horas);
+                nomeMaiorCompositor = registro.compositor;
+            }
+        }
+
+        let divisor = 0;
+
+        // Verificação para a divisão ser maior que 0 e não quebrar o código
+        if (totalHorasPlataforma > 0) {
+            divisor = totalHorasPlataforma;
+        }
+        else {
+            divisor = 1;
+        }
+
+        let percentualFavorito = (horasMaiorCompositor / divisor) * 100;
+
+        document.getElementById("resposta-matematica").innerHTML = `<b>${nomeMaiorCompositor}</b> representa 
+        <b>${percentualFavorito.toFixed(1)}%</b> do seu estudo total`
+
+        const config = {
+            type: 'doughnut',
+            data: dados,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'right' } },
+                cutout: '70%'
+            }
+        };
+
+        let myChart = new Chart(document.getElementById('doughnutChart'), config);
     }
 
     function limparSessao() {
