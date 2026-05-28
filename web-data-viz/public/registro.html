@@ -64,7 +64,7 @@
 
         function registrar() {
 
-            alert("Estudo registrado!");
+            
 
             let horasVar = ipt_horas.value.trim();
             let compositorVar = sel_compositor.value;
@@ -79,18 +79,24 @@
 
             if(horasVar == ''){
                 validacao_horas.innerHTML = `Campo Obrigatório`
+                validacao_horas.style.display = "block";
                 ax_erro = true;
             }
             if(tecnicaVar == ''){
                 validacao_tecnica.innerHTML = `Campo obrigatório`
+                validacao_tecnica.style.display = "block";
                 ax_erro = true;
             }
             if(horasVar < 0){
                 validacao_horas.innerHTML = `O número de horas deve ser positivo`
+                validacao_horas.style.display = "block";
                 ax_erro = true;
             }
 
             if (ax_erro == false) {
+
+                alert("Estudo registrado!");
+                
                 fetch("/estudo/cadastrar", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

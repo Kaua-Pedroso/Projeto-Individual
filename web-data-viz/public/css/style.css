@@ -215,18 +215,18 @@ section{
     padding-bottom: 1rem;
 }
 
-.menu .box-container .box .price p{
-    font-size: 1.4rem;
-    color: #fff;
-    padding: 1rem 0;
-    text-transform: none;
-    line-height: 1.6;
+.menu .box-container .box .content span{
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+    font-size: 2rem;
+    padding-bottom: 0.2rem;
 }
 
 .about-chopin .row{
     display: flex;
     align-items: center;
     background-color: var(--black);
+    border-radius: 1000px;
 }
 
 .about-chopin .row .container-image{
